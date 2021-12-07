@@ -9,7 +9,7 @@ class Shelf
 
     def add_candy_to_shelf(candy_name)
         candy = Candy.new(candy_name)
-        @shelf_candy_list << candy
+        @shelf_candy_list.push(candy)
         @shelf_candy_list.last.shelved = true
     end
 

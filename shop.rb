@@ -2,7 +2,7 @@ require_relative 'candy.rb'
 require_relative 'shelf.rb'
 
 class Shop
-    attr_accessor :unshelved_candy_list, :shelf_list
+    attr_reader :shelf_list
     
     def initialize
         @unshelved_candy_list = Array.new 
