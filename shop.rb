@@ -31,14 +31,14 @@ class Shop
     def unshelf_candy(candy_name)
         candy_found = false
 
-        @shelf_list.each do |candy_list_index|
-            if candy_list_index.shelf_candy_list.include?(candy_name)
-                shelf_candy_index = retrieve_candy_index(candy_list_index.shelf_candy_list, candy_name)
+        @shelf_list.each do |candy_list|
+            if candy_list.shelf_candy_list.include?(candy_name)
+                shelf_candy_index = retrieve_candy_index(candy_list.shelf_candy_list, candy_name)
         
-                @unshelved_candy_list.push(candy_list_index.shelf_candy_list[shelf_candy_index])
+                @unshelved_candy_list.push(candy_list.shelf_candy_list[shelf_candy_index])
                 @unshelved_candy_list.last.shelved = false
     
-                candy_list_index.shelf_candy_list.delete_at(shelf_candy_index)
+                candy_list.shelf_candy_list.delete_at(shelf_candy_index)
                 candy_found = true
             end
         end

@@ -8,7 +8,6 @@ class Candy
     end
 
     def ==(candy)
-        @candy_name == candy
-        
+        @candy_name == candy        
     end
 end
