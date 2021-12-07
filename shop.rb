@@ -3,6 +3,7 @@ require_relative 'shelf.rb'
 
 class Shop
     attr_accessor :unshelved_candy_list, :shelf_list
+    
     def initialize
         @unshelved_candy_list = Array.new 
         @shelf_list = Array.new
@@ -28,19 +29,18 @@ class Shop
     end
 
     def unshelf_candy(candy_name)
-        i = 0
         candy_found = false
-        while i < @shelf_list.length()
-            if @shelf_list[i].shelf_candy_list.include?(candy_name)
-                shelf_candy_index = retrieve_candy_index(@shelf_list[i].shelf_candy_list, candy_name)
 
-                @unshelved_candy_list.push(@shelf_list[i].shelf_candy_list[shelf_candy_index])
+        @shelf_list.each do |candy_list_index|
+            if candy_list_index.shelf_candy_list.include?(candy_name)
+                shelf_candy_index = retrieve_candy_index(candy_list_index.shelf_candy_list, candy_name)
+        
+                @unshelved_candy_list.push(candy_list_index.shelf_candy_list[shelf_candy_index])
                 @unshelved_candy_list.last.shelved = false
-
-                @shelf_list[i].shelf_candy_list.delete_at(shelf_candy_index)
+    
+                candy_list_index.shelf_candy_list.delete_at(shelf_candy_index)
                 candy_found = true
             end
-            i += 1
         end
 
         if candy_found == false
@@ -49,21 +49,13 @@ class Shop
     end
 
     def list_shelved_candies
-        i = 0
         puts "Shelved Candies: "
-        while i < @shelf_list.length()
-            @shelf_list[i].list_candies_on_shelf()
-            i += 1
-        end
+        @shelf_list.each {|candy_list| candy_list.list_candies_on_shelf}
     end
 
     def list_unshelved_candies
-        i = 0
         puts "Unshelved Candies: "
-        while i < @unshelved_candy_list.length()
-            puts @unshelved_candy_list[i].candy_name
-            i += 1
-        end
+        @unshelved_candy_list.each {|candy| puts candy.candy_name}
     end
 
     def add_shelf

@@ -3,7 +3,7 @@ require_relative 'shop.rb'
 shop = Shop.new
 continue = -1
 
-until continue == 7
+until continue == 8
     puts "========================="   
     puts "Available options:"
     puts "1: Create new shelf."
@@ -12,7 +12,8 @@ until continue == 7
     puts "4: Shelf candy."
     puts "5: Unshelf candy."
     puts "6: List shelved candies."
-    puts "7: Exit.\n"
+    puts "7: List unshelved candies."
+    puts "8: Exit.\n"
 
     print("Enter an option: ")
     continue = gets.chomp.to_i
@@ -58,8 +59,11 @@ until continue == 7
 
     when 6
         shop.list_shelved_candies
-        
+
     when 7
+        shop.list_unshelved_candies
+        
+    when 8
         "Exiting program."
 
     else
